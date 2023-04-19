@@ -1,0 +1,50 @@
+Table students {
+  id integer [primary key]
+  name varchar
+  first_name varchar
+  immatriculation integer
+  email varchar
+  phone varchar
+  created_at timestamp 
+}
+
+Table teachers {
+  id integer [primary key]
+  name varchar
+  first_name varchar
+  office varchar
+  email varchar
+  created_at timestamp
+}
+
+Table class {
+  id integer [primary key]
+  name varchar
+  teacher_id integer
+  created_at timestamp
+}
+
+Table follow {
+  id integer [primary key]
+  student_id integer
+  class_id integer
+  created_at timestamp
+}
+
+Table grades {
+  id integer [primary key]
+  follow_id integer
+  grade decimal (2,1)
+  date timestamp
+  weight float
+  created_at timestamp
+}
+
+
+Ref: class.teacher_id > teachers.id // many-to-one
+
+Ref: follow.student_id <> students.id
+
+Ref: follow.class_id <> class.id
+
+Ref: grades.follow_id > follow.id
